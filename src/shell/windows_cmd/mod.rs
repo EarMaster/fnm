@@ -20,11 +20,11 @@ impl Shell for WindowsCmd {
         let new_path = new_path
             .to_str()
             .ok_or_else(|| anyhow::anyhow!("Can't convert path to string"))?;
-        Ok(format!("SET PATH={}", new_path))
+        Ok(format!("SET PATH=\"{}\"", new_path))
     }
 
     fn set_env_var(&self, name: &str, value: &str) -> String {
-        format!("SET {}={}", name, value)
+        format!("SET {}=\"{}\"", name, value)
     }
 
     fn use_on_cd(&self, config: &crate::config::FnmConfig) -> anyhow::Result<String> {
